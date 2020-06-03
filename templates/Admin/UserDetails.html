@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a href="/AddHelicopter">Dodajanje helikopterja</a></li>
+  <li><a href="/DeleteHelicopter">Brisanje helikopterja</a></li>
+  <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li><a href="/Admin/Users">Seznam uporabnikov</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="Forms">
+<div id="FormWithNameLeft">
+    <div class="mainPart">Podatki o uporabniku: {{ user.PersonUserName }}</div>
+    <div class="FormDiv">
+        <form class="ClassicForm2">
+            <label for="profile-name">Ime uporabnika: </label>
+            <input type="text" id="profile-name" value="{{ user.PersonName }}" name="profile-name" disabled style="background-color: white;"><br><br>
+            <label for="profile-lastname">Priimek uporabnika: </label>
+            <input type="text" id="profile-lastname" value="{{ user.PersonLastName }}" name="profile-lastname" disabled style="background-color: white;"><br><br>
+            <label for="profile-EMSO">EMŠO: </label>
+            <input type="text" id="profile-EMSO" value="{{ user.PersonEMSO }}" name="profile-EMSO" disabled style="background-color: white;"><br><br>
+            <label for="profile-EMSO">Država: </label>
+            <input type="text" id="profile-Country" value="{{ user.PersonCountry }}" name="profile-Country" disabled style="background-color: white;"><br><br>
+            <label for="profile-email">E-mail naslov: </label>
+            <input type="text" id="profile-email" value="{{ user.PersonEmailAddress }}" name="profile-email" disabled style="background-color: white;"><br><br>
+            <label for="profile-inserted">Vnešen: </label>
+            <input type="text" id="profile-inserted" value="{{ user.DateInserted.strftime('%d.%m.%Y') }}" name="profile-inserted" disabled style="background-color: white;"><br><br>
+            <label for="profile-updated">Posodobljen: </label>
+            <input type="text" id="profile-updated" value="{% if user.DateModified is none %}-{% else %}{{user.DateModified.strftime('%d.%m.%Y')}}{% endif %}" name="profile-updated" disabled style="background-color: white;"><br><br>
+            <label for="profile-name">Aktiven: </label>
+            <input type="text" id="profile-active" value="{% if user.IsDeleted %}Ne{% else %}Da{% endif %}" name="profile-active" disabled style="background-color: white;">
+            {%if user.IsDeleted %}
+                <a class="LinkTo" href="/Admin/RebuildProfile"><p class="profileLink" align="center">Obnovi profil</p></a>
+            {% endif %}
+        </form>
+    </div>
+</div>
+<div id="FormWithNameRight">
+    <div class="mainPart">Podatki o izposoji</div>
+    <div class="FormDiv">
+        <form class="ClassicForm2">
+            <table class="TableOfUsers">
+        <tr>
+            <td style="width:150px; border-top:none;">Ime helikopterja</td>
+            <td style="width:100px; border-top:none;">Model</td>
+            <td style="width:150px; border-top:none;">Datum izdelave</td>
+            <td style="width:100px; border-top:none;">Cena</td>
+            <td style="width:150px; border-top:none;">Datum najema</td>
+            <td style="width:150px; border-top:none;">Datum vrnitve</td>
+        </tr>
+        {% for el in HelicoptersData %}
+        <tr>
+            <td>{{el.Helicopter.Ime}}</td>
+            <td>{{el.Helicopter.Model}}</td>
+            <td>{{el.Helicopter.LetoIzdelave.strftime('%d.%m.%Y')}}</td>
+            <td>{{el.Helicopter.Cena}}</td>
+            <td>{{el.Izposoje.DatumIzposoje.strftime('%d.%m.%Y')}}</td>
+            <td>{% if el.Izposoje.DatumVrnitve is none%}
+                    -
+                {% else %}
+                    {{el.Izposoje.DatumVrnitve.strftime('%d.%m.%Y')}}</td>
+                {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+        </form>
+    </div>
+</div>
+</div>
+<!--<div style="position: relative; width: 100px;">
+    <a class="LinkTo" href="/Admin/Users"><p class="profileLink" align="center">Nazaj</p></a>
+</div>-->
+{% endblock content %}

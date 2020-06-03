@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+  <li style="float: right"><a class="activeOption" href="/Profile">Profil</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="FormDiv">
+    <form class="ClassicForm" method="post" action="/Profile/Edit">
+        <div class="mainPart">Urejanje profila</div>
+        <p>Ime uporabnika:<input type="text" value="{{ user.PersonName }}" name="profile-name"></p>
+        <p>Priimek uporabnika:<input type="text" value="{{ user.PersonLastName }}" name="profile-lastname"></p>
+        <p>EMŠO:<input type="text" value="{{ user.PersonEMSO }}" name="profile-emso"></p>
+        <p>Država:<input type="text" value="{{ user.PersonCountry }}" name="profile-country"></p>
+        <p>E-mail naslov:<input type="email" value="{{ user.PersonEmailAddress }}" name="profile-email"></p>
+        <a class="LinkTo" href="/Profile/ChangePassword"><p class="profileLink" align="center" style="color: white;">Zamenjaj geslo</p></a>
+        <input type="submit" value="Potrdi">
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a href="/AddHelicopter">Dodajanje helikopterja</a></li>
+  <li><a href="/DeleteHelicopter">Brisanje helikopterja</a></li>
+  <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li><a class="activeOption" href="/Admin/Users">Seznam uporabnikov</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="mainPart">Seznam uporabnikov</div>
+<div class="FormDiv">
+    <table class="TableOfUsers" style="margin-left: 10%; margin-right: 10%;">
+        <tr>
+            <td style="width:150px; border-top:none;">Ime</td>
+            <td style="width:150px; border-top:none;">Priimek</td>
+            <td style="width:150px; border-top:none;">EMŠO</td>
+            <td style="width:150px; border-top:none;">Država</td>
+            <td style="width:150px; border-top:none;">Poštni naslov</td>
+            <td style="width:150px; border-top:none;">Prijavljen</td>
+            <td style="width:150px; border-top:none;">Posodobljen</td>
+            <td style="width:150px; border-top:none;">Uporabniško ime</td>
+            <td>Aktiven</td>
+        </tr>
+        {% for el in users %}
+        <tr class="clickable-row" data-href="/Admin/{{ el.ID }}" class="UserElements">
+            <td>{{el.PersonName}}</td>
+            <td>{{el.PersonLastName}}</td>
+            <td>{{el.PersonEMSO}}</td>
+            <td>{{el.PersonCountry}}</td>
+            <td>{{el.PersonEmailAddress}}</td>
+            <td>{{el.DateInserted.strftime('%d.%m.%Y')}}</td>
+            <td>
+                {% if el.DateModified is none %}
+                    -
+                {% else %}
+                    {{el.DateModified.strftime('%d.%m.%Y')}}
+                {% endif %}
+            </td>
+            <td>{{el.PersonUserName}}</td>
+            <td>
+                {% if el.IsDeleted %}
+                    Ne
+                {% else %}
+                    Da
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+</script>
+{% endblock content %}

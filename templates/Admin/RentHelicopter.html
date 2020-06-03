@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a href="/AddHelicopter">Dodajanje helikopterja</a></li>
+  <li><a href="/DeleteHelicopter">Brisanje helikopterja</a></li>
+  <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a class="activeOption" href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li><a href="/Admin/Users">Seznam uporabnikov</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="mainPart">Izberi helikopter in osebo za najem</div>
+<div class="FormDiv">
+    <form class="ClassicForm" method="post" action="/RentedHelicopter">
+      <label for="Person">Izberi osebo:</label>
+        <select id="Person" name="Person" required>
+          {% for el in DataOsebe %}
+            <option value="{{el.ID}}">{{el.PersonUserName}}</option>
+          {% endfor %}
+        </select>
+      <label for="Helicopter">Izberi helikopter:</label>
+        <select id="Helicopter" name="Helicopter" required>
+          {% for el in DataHelikopterji %}
+            <option value="{{el.ID}}">{{el.Ime}}</option>
+          {% endfor %}
+        </select>
+       <input type="submit" value="Najemi">
+    </form>
+</div>
+{% endblock content %}

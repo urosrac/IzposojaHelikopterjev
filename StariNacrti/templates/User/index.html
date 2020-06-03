@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+    <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+    <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+    <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+    <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+    <li style="float: right"><a href="/Logout">Izpis</a></li>
+    <li style="float: right"><a href="/Profile">Profil</a></li>
+    <!--<li class="Admin"><a href="#">Uporabnik</a>
+      <div class="Dropdown-menu">
+        <a href="/Logout">Profil</a>
+        <a href="/Logout">Izpis</a>
+      </div>
+    </li>-->
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+    <div class="mainPart">Aplikacija za urejanje podatkov o helikopterjih</div>
+{% endblock content %}

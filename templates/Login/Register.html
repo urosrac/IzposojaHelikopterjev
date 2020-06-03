@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+    <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+    <li style="float:right;"><a class="activeOption" href="/Register" style="color: white;">Registracija</a></li>
+    <li style="float:right;"><a href="/Login">Prijava</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+    <div class="FormDiv">
+        <form class="ClassicForm" method="post" action="/RegisteredUser">
+          <label for="PersonName">Ime:</label>
+          <input type="text" id="PersonName" name="PersonName" required><br><br>
+          <label for="PersonLastName">Priimek:</label>
+          <input type="text" id="PersonLastName" name="PersonLastName" required><br><br>
+          <label for="PersonEMSO">EMŠO:</label>
+          <input type="text" id="PersonEMSO" name="PersonEMSO" required><br><br>
+          <label for="PersonCountry">Država:</label>
+          <input type="text" id="PersonCountry" name="PersonCountry" required><br><br>
+          <label for="PersonEmailAddress">Elektronski naslov:</label>
+          <input type="email" id="PersonEmailAddress" name="PersonEmailAddress" required><br><br>
+          <input type="submit" value="Registracija">
+        </form>
+    </div>
+{% endblock content %}

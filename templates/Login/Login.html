@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+    <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+    <li style="float:right;"><a href="/Register">Registracija</a></li>
+    <li style="float:right;"><a class="activeOption" style="color: white;" href="/Login">Prijava</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+    <div class="FormDiv">
+        <form class="ClassicForm" method="post" action="/LogedUser">
+          <label for="Username">Uporabniško ime:</label>
+          <input type="text" id="UserName" name="UserName" required><br><br>
+          <label for="Password">Geslo:</label>
+          <input type="password" id="Password" name="Password" required><br><br>
+          <input type="submit" value="Prijava">
+        </form>
+    </div>
+{% endblock content %}

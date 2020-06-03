@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+  <li style="float: right"><a class="activeOption" href="/Profile">Profil</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="FormDiv">
+    <form class="ClassicForm">
+        <div class="mainPart">Urejanje profila</div>
+        <p align="center"><strong>Ime uporabnika:</strong> {{ user.PersonUserName }}</p>
+        <p align="center"><strong>Email naslov:</strong> {{ user.PersonEmailAddress }}</p>
+        <a class="LinkTo" href="/Profile/Edit"><p class="profileLink" align="center">Uredi profil</p></a>
+        <a class="LinkTo" href="/Profile/Delete"><p class="profileLink" align="center">Izbriši profil</p></a>
+    </form>
+</div>
+<!--
+<div class="FormDiv">
+    <form class="ClassicForm" method="post" action="/ChangedProfile">
+       <input type="submit" value="Potrdi">
+    </form>
+</div>-->
+{% endblock content %}

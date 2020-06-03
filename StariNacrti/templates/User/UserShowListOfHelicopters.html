@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a class="activeOption" href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+  <li style="float: right"><a href="/Profile">Profil</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="mainPart">Seznam helikopterjev</div>
+<div class="FormDiv">
+    <table class="TableOfHelicopters">
+        <tr>
+            <td style="width:150px; border-top:none;">Ime helikopterja</td>
+            <td style="width:100px; border-top:none;">Model</td>
+            <td style="width:150px; border-top:none;">Leto izdelave</td>
+            <td style="width:100px; border-top:none;">Cena</td>
+            <td style="...">Najet</td>
+        </tr>
+        {% for el in dataHelikopterji %}
+        <tr>
+            <td>{{el.Ime}}</td>
+            <td>{{el.Model}}</td>
+            <td>{{el.LetoIzdelave.strftime('%d.%m.%Y')}}</td>
+            <td>{{el.Cena}}</td>
+            <td>
+                {% if el.Rented %}
+                    Da
+                {% else %}
+                    Ne
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

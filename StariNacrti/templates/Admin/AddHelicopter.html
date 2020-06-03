@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block navigationContent %}
+<ul>
+  <li><a class="active">Aplikacija za najem helikopterjev</a></li>
+  <li><a class="activeOption" href="/AddHelicopter">Dodajanje helikopterja</a></li>
+  <li><a href="/DeleteHelicopter">Brisanje helikopterja</a></li>
+  <li><a href="/ShowListOfHelicopters">Izpis seznama helikopterjev</a></li>
+  <li><a href="/RentHelicopter">Najem helikopterja</a></li>
+  <li><a href="/ReturnHelicopter">Vračilo helikopterja</a></li>
+  <li><a href="/Admin/Users">Seznam uporabnikov</a></li>
+  <li style="float: right"><a href="/Logout">Izpis</a></li>
+</ul>
+{% endblock navigationContent %}
+{% block content %}
+<div class="mainPart">Vnesi podatke za nov helikopter</div>
+<div class="FormDiv">
+    <form class="ClassicForm" method="post" action="/AddedHelicopter">
+      <label for="HelicopterName">Ime helikopterja:</label>
+      <input type="text" id="HelicopterName" name="HelicopterName" required><br><br>
+      <label for="HelicopterModel">Model:</label>
+      <input type="text" id="HelicopterModel" name="HelicopterModel" required><br><br>
+      <label for="HelicopterYear">Datum izdelave:</label>
+      <input type="date" min="1939-09-14" id="HelicopterYear" name="HelicopterYear" required><br><br>
+      <label for="HelicopterPrice">Cena:</label>
+      <input type="number" step=".01" min="0" id="HelicopterPrice" name="HelicopterPrice" required><br><br>
+      <input type="submit" value="Dodaj helikopter">
+    </form>
+</div>
+{% endblock content %}
